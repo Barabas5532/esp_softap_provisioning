@@ -8,8 +8,7 @@ import 'dart:io';
 import 'dart:convert' as convert;
 import 'package:string_validator/string_validator.dart';
 
-class TransportHTTP implements Transport{
-
+class TransportHTTP implements Transport {
   String hostname;
   Duration timeout;
   Map<String, String> headers = new Map();
@@ -18,20 +17,19 @@ class TransportHTTP implements Transport{
   TransportHTTP(String hostname) {
     if (!isURL(hostname)) {
       throw FormatException('hostname should be an URL.');
-    }
-    else {
+    } else {
       this.hostname = hostname;
     }
     this.timeout = Duration(seconds: 10);
 
-    headers["Content-type"] =  "application/x-www-form-urlencoded";
+    headers["Content-type"] = "application/x-www-form-urlencoded";
     //header["Content-type"] =  "application/json";
 
-    headers["Accept"] =  "text/plain";
+    headers["Accept"] = "text/plain";
   }
 
   @override
-  Future<bool>  connect() async {
+  Future<bool> connect() async {
     return true;
   }
 
@@ -39,12 +37,13 @@ class TransportHTTP implements Transport{
   Future<void> disconnect() {
     client.close();
   }
+
   void _updateCookie(http.Response response) {
     String rawCookie = response.headers['set-cookie'];
     if (rawCookie != null) {
       int index = rawCookie.indexOf(';');
       headers['cookie'] =
-      (index == -1) ? rawCookie : rawCookie.substring(0, index);
+          (index == -1) ? rawCookie : rawCookie.substring(0, index);
     }
   }
 
@@ -52,28 +51,34 @@ class TransportHTTP implements Transport{
   Future<Uint8List> sendReceive(String epName, Uint8List data) async {
     try {
       print("Connecting to " + this.hostname + "/" + epName);
-      final response = await client.post(Uri.http(this.hostname, "/" + epName,),headers: this.headers,
-      body: data).timeout(this.timeout).catchError((error){print(error);});
+      final response = await client
+          .post(
+              Uri.http(
+                this.hostname,
+                "/" + epName,
+              ),
+              headers: this.headers,
+              body: data)
+          .timeout(this.timeout)
+          /*
+          .catchError((error) {
+        print(error);
+      })*/;
 
-      if (response !=null) {
+      if (response != null) {
         _updateCookie(response);
         if (response.statusCode == 200) {
           print('Connection successful');
           //client.close();
           final Uint8List body_bytes = response.bodyBytes;
           return body_bytes;
-        }
-        else {
+        } else {
           print('Connection failed');
           throw Exception("ESP Device doesn't repond");
         }
       }
-    }
-    catch(e){
+    } catch (e) {
       throw StateError('Connection error ' + e.toString());
     }
   }
 }
-
-
-

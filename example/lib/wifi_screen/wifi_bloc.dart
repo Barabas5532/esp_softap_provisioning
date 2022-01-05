@@ -6,7 +6,7 @@ import 'package:esp_softap_provisioning/src/connection_models.dart';
 import 'package:logger/logger.dart';
 import '../softap_service.dart';
 import './wifi.dart';
-import 'dart:io';
+//import 'dart:io';
 import 'dart:convert';
 
 class WiFiBlocSoftAP extends Bloc<WifiEvent, WifiState> {
@@ -31,13 +31,17 @@ class WiFiBlocSoftAP extends Bloc<WifiEvent, WifiState> {
   Stream<WifiState> _mapLoadToState() async*{
     yield WifiStateConnecting();
     try {
+        /*
       if (Platform.isIOS)
         {
           prov = await softApService.startProvisioning("wifi-prov.local", "INC032017");
         }
       else{
+      */
           prov = await softApService.startProvisioning("192.168.4.1:80","INC032017");
+          /*
         }
+        */
 
     } catch (e) {
       log.e('Error connecting to device $e');
@@ -48,7 +52,7 @@ class WiFiBlocSoftAP extends Bloc<WifiEvent, WifiState> {
 
 
 
-      var listWifi = await prov.startScanWiFi();
+      var listWifi = null;/* await prov.startScanWiFi() */;
       yield WifiStateLoaded(wifiList: listWifi ?? []);
       log.v('Wifi $listWifi');
     } catch (e) {

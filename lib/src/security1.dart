@@ -17,7 +17,7 @@ class Security1 implements Security {
   List<int> clientPubKey;
   SimplePublicKey devicePublicKey;
   Uint8List deviceRandom;
-  Cryptor crypt = Cryptor();
+  Cryptor crypt = WebCryptor();
   var logger = Logger();
   final algorithm = X25519();
 
