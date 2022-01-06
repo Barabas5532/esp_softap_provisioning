@@ -22,7 +22,7 @@ class Cryptor {
   }
 }
 
-class WebCryptor implements Cryptor {
+class UniversalCryptor implements Cryptor {
   Uint8List _iv;
   Uint8List _key;
 
