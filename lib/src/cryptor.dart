@@ -26,7 +26,7 @@ class WebCryptor implements Cryptor {
   Uint8List _iv;
   Uint8List _key;
 
-  int counter = 0;
+  int byte_counter = 0;
 
   final algorithm = AesCtr.with256bits(
     macAlgorithm: MacAlgorithm.empty,
@@ -35,20 +35,18 @@ class WebCryptor implements Cryptor {
   Future<bool> init(Uint8List key, Uint8List iv) async {
     _iv = iv;
     _key = key;
-    counter = 0;
+    byte_counter = 0;
   }
 
   Future<Uint8List> crypt(Uint8List data) async {
-    var iv = _iv;
-    iv[15] += counter * 2;
-
     final secretBox = await algorithm.encrypt(
       data,
       secretKey: await algorithm.newSecretKeyFromBytes(_key),
-      nonce: iv,
+      nonce: _iv,
+      keyStreamIndex: byte_counter,
     );
 
-    counter++;
+    byte_counter += data.length;
 
     return Uint8List.fromList(secretBox.cipherText);
   }
