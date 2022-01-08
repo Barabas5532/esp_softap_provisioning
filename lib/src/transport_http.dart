@@ -4,14 +4,14 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'transport.dart';
-import 'dart:io';
+import 'package:universal_io/io.dart';
 import 'dart:convert' as convert;
 import 'package:string_validator/string_validator.dart';
 
 class TransportHTTP implements Transport{
 
   String hostname;
-  Duration timeout;
+  final timeout = Duration(seconds: 10);
   Map<String, String> headers = new Map();
   var client = http.Client();
 
@@ -22,7 +22,6 @@ class TransportHTTP implements Transport{
     else {
       this.hostname = hostname;
     }
-    this.timeout = Duration(seconds: 10);
 
     headers["Content-type"] =  "application/x-www-form-urlencoded";
     //header["Content-type"] =  "application/json";
@@ -55,18 +54,16 @@ class TransportHTTP implements Transport{
       final response = await client.post(Uri.http(this.hostname, "/" + epName,),headers: this.headers,
       body: data).timeout(this.timeout).catchError((error){print(error);});
 
-      if (response !=null) {
-        _updateCookie(response);
-        if (response.statusCode == 200) {
-          print('Connection successful');
-          //client.close();
-          final Uint8List body_bytes = response.bodyBytes;
-          return body_bytes;
-        }
-        else {
-          print('Connection failed');
-          throw Exception("ESP Device doesn't repond");
-        }
+      _updateCookie(response);
+      if (response.statusCode == 200) {
+        print('Connection successful');
+        //client.close();
+        final Uint8List body_bytes = response.bodyBytes;
+        return body_bytes;
+      }
+      else {
+        print('Connection failed');
+        throw Exception("ESP Device doesn't repond");
       }
     }
     catch(e){

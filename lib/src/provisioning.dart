@@ -12,8 +12,8 @@ import 'package:esp_softap_provisioning/src/connection_models.dart';
 import 'transport.dart';
 
 class Provisioning {
-  Transport transport;
-  Security security;
+  Transport/*!*/ transport;
+  Security/*!*/ security;
 
   Provisioning({this.transport, this.security});
 

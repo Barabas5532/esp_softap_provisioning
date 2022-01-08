@@ -67,7 +67,7 @@ class Security1 implements Security {
     if (sessionState == SecurityState.RESPONSE1_REQUEST2) {
       sessionState = SecurityState.RESPONSE2;
       await setup0Response(responseData);
-      return await setup1Request(responseData);
+      return await setup1Request();
     }
     if (sessionState == SecurityState.RESPONSE2) {
       sessionState = SecurityState.FINISH;
@@ -95,7 +95,7 @@ class Security1 implements Security {
     return setupRequest;
   }
 
-  Future<SessionData> setup0Response(SessionData responseData) async {
+  Future<void> setup0Response(SessionData responseData) async {
     SessionData setupResp = responseData;
     if (setupResp.secVer != SecSchemeVersion.SecScheme1) {
       throw Exception('Invalid sec scheme');
@@ -126,12 +126,11 @@ class Security1 implements Security {
       await this.crypt.init(sharedKeyBytes, deviceRandom);
       logger.i(
           'setup0Response: cipherSecretKey: ${sharedKeyBytes.toString()} cipherNonce: ${deviceRandom.toString()}');
-      return setupResp;
     });
 
   }
 
-  Future<SessionData> setup1Request(SessionData responseData) async {
+  Future<SessionData> setup1Request() async {
     logger.i('setup1Request ${devicePublicKey.toString()}');
     var clientVerify = await encrypt(devicePublicKey.bytes);
 
@@ -148,7 +147,7 @@ class Security1 implements Security {
     return setupRequest;
   }
 
-  Future<SessionData> setup1Response(SessionData responseData) async {
+  Future<void> setup1Response(SessionData responseData) async {
     logger.i('setup1Response');
     var setupResp = responseData;
     if (setupResp.secVer == SecSchemeVersion.SecScheme1) {
@@ -163,7 +162,7 @@ class Security1 implements Security {
       if (!eq(encClientPubkey, clientPubKey)) {
         throw Exception('Mismatch in device verify');
       }
-      return null;
+      return;
     }
     throw Exception('Unsupported security protocol');
   }
