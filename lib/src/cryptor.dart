@@ -21,7 +21,7 @@ class Cryptor {
 }
 
 class UniversalCryptor implements Cryptor {
-  Uint8List _iv;
+  late Uint8List _iv;
   late Uint8List _key;
 
   int byte_counter = 0;
@@ -34,6 +34,9 @@ class UniversalCryptor implements Cryptor {
     _iv = iv;
     _key = key;
     byte_counter = 0;
+
+    // TODO what should we return for success? it is ignored for now
+    return true;
   }
 
   Future<Uint8List> crypt(Uint8List data) async {

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -121,7 +122,7 @@ class Provisioning {
     if (respPayload.msg != WiFiScanMsgType.TypeRespScanResult) {
       throw Exception('Invalid expected message type $respPayload');
     }
-    List<Map<String, dynamic>> ret = new List<Map<String, dynamic>>();
+    List<Map<String, dynamic>> ret = [];
     for (var entry in respPayload.respScanResult.entries) {
       ret.add({
         'ssid': utf8.decode(entry.ssid),
@@ -149,7 +150,7 @@ class Provisioning {
           periodMs: periodMs);
       var status = await scanStatusRequest();
       var resultCount = status.respScanStatus.resultCount;
-      List<Map<String, dynamic>> ret = new List<Map<String, dynamic>>();
+      List<Map<String, dynamic>> ret = [];
       if (resultCount > 0) {
         var index = 0;
         var remaining = resultCount;

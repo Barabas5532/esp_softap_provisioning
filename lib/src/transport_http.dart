@@ -37,7 +37,9 @@ class TransportHTTP implements Transport{
   @override
   Future<void> disconnect() {
     client.close();
+    return Future<void>.value();
   }
+
   void _updateCookie(http.Response response) {
     String? rawCookie = response.headers['set-cookie'];
     if (rawCookie != null) {
