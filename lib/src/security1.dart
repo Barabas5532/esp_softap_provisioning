@@ -14,13 +14,13 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 bool _hasNativeCryptor() => (Platform.isAndroid || Platform.isIOS) && !kIsWeb;
 
 class Security1 implements Security {
-  final String pop;
+  final String? pop;
   final bool verbose;
   SecurityState sessionState;
-  SimpleKeyPairData clientKey;
-  List<int> clientPubKey;
-  SimplePublicKey devicePublicKey;
-  Uint8List deviceRandom;
+  late SimpleKeyPairData clientKey;
+  List<int>? clientPubKey;
+  late SimplePublicKey devicePublicKey;
+  late Uint8List deviceRandom;
   Cryptor crypt = _hasNativeCryptor() ? Cryptor() : UniversalCryptor();
   var logger = Logger();
   final algorithm = X25519();
@@ -30,19 +30,19 @@ class Security1 implements Security {
         this.sessionState = SecurityState.REQUEST1,
         this.verbose = false});
 
-  Future<Uint8List> encrypt(Uint8List data) async {
+  Future<Uint8List?> encrypt(Uint8List data) async {
     logger.i('raw data before encryption: ${data.toString()}');
     return crypt.crypt(data);
   }
 
-  Future<Uint8List> decrypt(Uint8List data) async {
+  Future<Uint8List?> decrypt(Uint8List data) async {
     logger.i('Decrypt');
     return encrypt(data);
   }
 
   Future<void> _generateKey() async {
     // creates client key with X25519 algo
-    this.clientKey = await algorithm.newKeyPair();
+    this.clientKey = await (algorithm.newKeyPair() as FutureOr<SimpleKeyPairData>);
   }
 
 
@@ -59,19 +59,19 @@ class Security1 implements Security {
     return ret;
   }
 
-  Future<SessionData> securitySession(SessionData responseData) async {
+  Future<SessionData?> securitySession(SessionData? responseData) async {
     if (sessionState == SecurityState.REQUEST1) {
       sessionState = SecurityState.RESPONSE1_REQUEST2;
       return await setup0Request();
     }
     if (sessionState == SecurityState.RESPONSE1_REQUEST2) {
       sessionState = SecurityState.RESPONSE2;
-      await setup0Response(responseData);
+      await setup0Response(responseData!);
       return await setup1Request();
     }
     if (sessionState == SecurityState.RESPONSE2) {
       sessionState = SecurityState.FINISH;
-      await setup1Response(responseData);
+      await setup1Response(responseData!);
       return null;
     }
     throw Exception('Unexpected state');
@@ -112,11 +112,11 @@ class Security1 implements Security {
         remotePublicKey: devicePublicKey);
 
     await sharedKey.extractBytes().then((sharedSecret) async {
-      Uint8List sharedKeyBytes;
+      late Uint8List sharedKeyBytes;
       logger.i('setup0Response: Shared key calculated: ${sharedSecret.toString()}');
       if (pop != null) {
         var sink = Sha256().newHashSink();
-        sink.add(utf8.encode(pop));
+        sink.add(utf8.encode(pop!));
         sink.close();
         final hash = await sink.hash();
         sharedKeyBytes = _xor(Uint8List.fromList(sharedSecret),Uint8List.fromList(hash.bytes));
@@ -132,7 +132,7 @@ class Security1 implements Security {
 
   Future<SessionData> setup1Request() async {
     logger.i('setup1Request ${devicePublicKey.toString()}');
-    var clientVerify = await encrypt(devicePublicKey.bytes);
+    var clientVerify = await (encrypt(devicePublicKey.bytes as Uint8List) as FutureOr<Uint8List>);
 
     logger.i('client verify ${clientVerify.toString()}');
     var setupRequest = SessionData();

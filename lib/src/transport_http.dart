@@ -10,7 +10,7 @@ import 'package:string_validator/string_validator.dart';
 
 class TransportHTTP implements Transport{
 
-  String hostname;
+  late String hostname;
   final timeout = Duration(seconds: 10);
   Map<String, String> headers = new Map();
   var client = http.Client();
@@ -39,7 +39,7 @@ class TransportHTTP implements Transport{
     client.close();
   }
   void _updateCookie(http.Response response) {
-    String rawCookie = response.headers['set-cookie'];
+    String? rawCookie = response.headers['set-cookie'];
     if (rawCookie != null) {
       int index = rawCookie.indexOf(';');
       headers['cookie'] =

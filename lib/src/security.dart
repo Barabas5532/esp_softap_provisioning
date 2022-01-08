@@ -11,9 +11,9 @@ enum SecurityState {
 }
 
 abstract class Security {
-  Future<Uint8List> encrypt(Uint8List data);
+  Future<Uint8List?> encrypt(Uint8List data);
 
-  Future<Uint8List> decrypt(Uint8List data);
+  Future<Uint8List?> decrypt(Uint8List data);
 
-  Future<SessionData> securitySession(SessionData responseData);
+  Future<SessionData?> securitySession(SessionData? responseData);
 }
