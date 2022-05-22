@@ -33,10 +33,10 @@ class WiFiBlocSoftAP extends Bloc<WifiEvent, WifiState> {
     try {
       if (Platform.isIOS)
         {
-          prov = await softApService.startProvisioning("wifi-prov.local", "INC032017");
+          prov = await softApService.startProvisioning("wifi-prov.local", "abcd1234");
         }
       else{
-          prov = await softApService.startProvisioning("192.168.4.1:80","INC032017");
+          prov = await softApService.startProvisioning("192.168.4.1:80","abcd1234");
         }
 
     } catch (e) {
@@ -62,8 +62,8 @@ class WiFiBlocSoftAP extends Bloc<WifiEvent, WifiState> {
     List<int> customData = utf8.encode("Some CUSTOM data\0");
     Uint8List customBytes = Uint8List.fromList(customData);
     await prov.sendReceiveCustomData(customBytes);
-    await prov?.sendWifiConfig(ssid: event.ssid, password: event.password);
-    await prov?.applyWifiConfig();
+    await prov.sendWifiConfig(ssid: event.ssid, password: event.password);
+    await prov.applyWifiConfig();
     await Future.delayed(Duration(seconds: 10));
     var connectionStatus = await prov.getStatus();
 

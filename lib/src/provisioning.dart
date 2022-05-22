@@ -12,7 +12,37 @@ import 'package:esp_softap_provisioning/src/connection_models.dart';
 
 import 'transport.dart';
 
-class Provisioning {
+/// Interface for interacting with espressif WiFi provisioning
+///
+/// https://docs.espressif.com/projects/esp-idf/en/v4.4.1/esp32/api-reference/provisioning/wifi_provisioning.html
+abstract class ProvisioningBase {
+  /// Connect to device and estabilish the secure protocomm session
+  ///
+  /// Return true on success, false on failure
+  Future<bool> establishSession();
+
+  /// Scan for WiFi access points
+  ///
+  /// Returns list of access points or null on failure
+  ///
+  /// TODO give example of the output map to show what keys are used
+  Future<List<Map<String, dynamic>>?> startScanWiFi();
+
+  /// Configure WiFi credentials on device
+  Future<bool> sendWifiConfig({String? ssid, String? password});
+
+  /// Try to use configured credentials [sendWifiConfig] to connect to an access point
+  Future<bool> applyWifiConfig();
+
+  /// Get the status of connection after testing configured credentials with [applyWifiConfig]
+  Future<ConnectionStatus?> getStatus();
+
+  /// Send data to the `custom-data` endpoint configured in the esp-idf WiFi
+  /// provisioning example
+  Future<Uint8List> sendReceiveCustomData(Uint8List data, {int packageSize = 256});
+}
+
+class Provisioning extends ProvisioningBase {
   Transport transport;
   Security security;
 
@@ -45,10 +75,10 @@ class Provisioning {
   }
 
   Future<List<Map<String, dynamic>>?> startScanWiFi() async {
-    return await scan();
+    return await _scan();
   }
 
-  Future<WiFiScanPayload> startScanResponse(Uint8List data) async {
+  Future<WiFiScanPayload> _startScanResponse(Uint8List data) async {
     var respPayload = WiFiScanPayload.fromBuffer(await (security.decrypt(data) as FutureOr<List<int>>));
     if (respPayload.msg != WiFiScanMsgType.TypeRespScanStart) {
       throw Exception('Invalid expected message type $respPayload');
@@ -56,7 +86,7 @@ class Provisioning {
     return respPayload;
   }
 
-  Future<WiFiScanPayload> startScanRequest(
+  Future<WiFiScanPayload> _startScanRequest(
       {bool blocking = true,
       bool passive = false,
       int groupChannels = 5,
@@ -72,10 +102,10 @@ class Provisioning {
     payload.cmdScanStart = scanStart;
     var reqData = await (security.encrypt(payload.writeToBuffer()) as FutureOr<Uint8List>);
     var respData = await transport.sendReceive('prov-scan', reqData);
-    return startScanResponse(respData);
+    return _startScanResponse(respData);
   }
 
-  Future<WiFiScanPayload> scanStatusResponse(Uint8List data) async {
+  Future<WiFiScanPayload> _scanStatusResponse(Uint8List data) async {
     var respPayload = WiFiScanPayload.fromBuffer(await (security.decrypt(data) as FutureOr<List<int>>));
     if (respPayload.msg != WiFiScanMsgType.TypeRespScanStatus) {
       throw Exception('Invalid expected message type $respPayload');
@@ -83,7 +113,7 @@ class Provisioning {
     return respPayload;
   }
 
-  Future<WiFiScanPayload> scanStatusRequest() async {
+  Future<WiFiScanPayload> _scanStatusRequest() async {
     print('scanStatusRequest started');
     WiFiScanPayload payload = WiFiScanPayload();
     payload.msg = WiFiScanMsgType.TypeCmdScanStatus;
@@ -96,10 +126,10 @@ class Provisioning {
     print('after sendreceive');
     print('before scanStatusResponse');
 
-    return scanStatusResponse(respData);
+    return _scanStatusResponse(respData);
   }
 
-  Future<List<Map<String, dynamic>>> scanResultRequest(
+  Future<List<Map<String, dynamic>>> _scanResultRequest(
       {int startIndex = 0, int count = 0}) async {
     WiFiScanPayload payload = WiFiScanPayload();
     payload.msg = WiFiScanMsgType.TypeCmdScanResult;
@@ -114,10 +144,10 @@ class Provisioning {
     print('++++ xxxx ++++');
     var respData = await transport.sendReceive('prov-scan', reqData);
     print('++++ yyyyy ++++');
-    return scanResultResponse(respData);
+    return _scanResultResponse(respData);
   }
 
-  Future<List<Map<String, dynamic>>> scanResultResponse(Uint8List data) async {
+  Future<List<Map<String, dynamic>>> _scanResultResponse(Uint8List data) async {
     var respPayload = WiFiScanPayload.fromBuffer(await (security.decrypt(data) as FutureOr<List<int>>));
     if (respPayload.msg != WiFiScanMsgType.TypeRespScanResult) {
       throw Exception('Invalid expected message type $respPayload');
@@ -135,7 +165,7 @@ class Provisioning {
     return ret;
   }
 
-  Future<List<Map<String, dynamic>>?> scan(
+  Future<List<Map<String, dynamic>>?> _scan(
 
       {bool blocking = true,
       bool passive = false,
@@ -143,12 +173,12 @@ class Provisioning {
       int periodMs = 0}) async {
     try {
       print('Scan Started');
-      await startScanRequest(
+      await _startScanRequest(
           blocking: blocking,
           passive: passive,
           groupChannels: groupChannels,
           periodMs: periodMs);
-      var status = await scanStatusRequest();
+      var status = await _scanStatusRequest();
       var resultCount = status.respScanStatus.resultCount;
       List<Map<String, dynamic>> ret = [];
       if (resultCount > 0) {
@@ -156,7 +186,7 @@ class Provisioning {
         var remaining = resultCount;
         while (remaining > 0) {
           var count = remaining > 4 ? 4 : remaining;
-          var data = await scanResultRequest(startIndex: index, count: count);
+          var data = await _scanResultRequest(startIndex: index, count: count);
           ret.addAll(data);
           remaining -= count;
           index += count;

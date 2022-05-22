@@ -1,10 +1,11 @@
 .DS_Store
-.dart_tool/
+.dart_tool
 
 .packages
-.pub/
+.pub
 
-build/
+build
+doc
 
 pubspec.lock
 analysis_options.yaml
