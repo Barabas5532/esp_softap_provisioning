@@ -75,7 +75,7 @@ class Security1 implements Security {
       await setup1Response(responseData!);
       return null;
     }
-    throw Exception('Unexpected state');
+    throw Exception('Unexpected state $sessionState');
   }
 
   Future<SessionData> setup0Request() async {
@@ -133,7 +133,7 @@ class Security1 implements Security {
 
   Future<SessionData> setup1Request() async {
     logger.i('setup1Request ${devicePublicKey.toString()}');
-    var clientVerify = await (encrypt(devicePublicKey.bytes as Uint8List) as FutureOr<Uint8List>);
+    var clientVerify = await encrypt(devicePublicKey.bytes as Uint8List);
 
     logger.i('client verify ${clientVerify.toString()}');
     var setupRequest = SessionData();
@@ -141,7 +141,7 @@ class Security1 implements Security {
     Sec1Payload sec1 = Sec1Payload();
     sec1.msg = Sec1MsgType.Session_Command1;
     SessionCmd1 sc1 = SessionCmd1();
-    sc1.clientVerifyData = clientVerify;
+    sc1.clientVerifyData = clientVerify!;
     sec1.sc1 = sc1;
     setupRequest.sec1 = sec1;
     logger.i('setup1Request finished');

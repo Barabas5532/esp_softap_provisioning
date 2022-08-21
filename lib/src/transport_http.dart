@@ -68,8 +68,8 @@ class TransportHTTP implements Transport{
         throw Exception("ESP Device doesn't repond");
       }
     }
-    catch(e){
-      throw StateError('Connection error ' + e.toString());
+    catch(e, stacktrace){
+      throw StateError('Connection error $e $stacktrace');
     }
   }
 }
