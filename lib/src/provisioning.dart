@@ -12,47 +12,18 @@ import 'package:esp_softap_provisioning/src/connection_models.dart';
 
 import 'transport.dart';
 
-/// Interface for interacting with espressif WiFi provisioning
+/// Espressif WiFi provisioning
 ///
 /// https://docs.espressif.com/projects/esp-idf/en/v4.4.1/esp32/api-reference/provisioning/wifi_provisioning.html
-abstract class ProvisioningBase {
-  /// Connect to device and estabilish the secure protocomm session
-  ///
-  /// Return true on success, false on failure
-  Future<bool> establishSession();
-
-  /// Scan for WiFi access points
-  ///
-  /// Returns list of access points or null on failure
-  ///
-  /// TODO give example of the output map to show what keys are used
-  Future<List<Map<String, dynamic>>?> startScanWiFi();
-
-  /// Configure WiFi credentials on device
-  ///
-  /// Return true on success, false on failure
-  Future<bool> sendWifiConfig({String? ssid, String? password});
-
-  /// Try to use credentials passed to [sendWifiConfig] to connect to an access
-  /// point
-  ///
-  /// Return true on success, false on failure
-  Future<bool> applyWifiConfig();
-
-  /// Get the status of connection after testing configured credentials with [applyWifiConfig]
-  Future<ConnectionStatus?> getStatus();
-
-  /// Send data to the `custom-data` endpoint configured in the esp-idf WiFi
-  /// provisioning example
-  Future<Uint8List> sendReceiveCustomData(Uint8List data, {int packageSize = 256});
-}
-
-class Provisioning extends ProvisioningBase {
+class Provisioning {
   Transport transport;
   Security security;
 
   Provisioning({required this.transport, required this.security});
 
+  /// Connect to device and estabilish the secure protocomm session
+  ///
+  /// Return true on success, false on failure
   Future<bool> establishSession() async {
     try {
       SessionData? responseData;
@@ -79,6 +50,11 @@ class Provisioning extends ProvisioningBase {
     return transport.disconnect();
   }
 
+  /// Scan for WiFi access points
+  ///
+  /// Returns list of access points or null on failure
+  ///
+  /// TODO give example of the output map to show what keys are used
   Future<List<Map<String, dynamic>>?> startScanWiFi() async {
     return await _scan();
   }
@@ -204,6 +180,9 @@ class Provisioning extends ProvisioningBase {
     return null;
   }
 
+  /// Configure WiFi credentials on device
+  ///
+  /// Return true on success, false on failure
   Future<bool> sendWifiConfig({String? ssid, String? password}) async {
     var payload = WiFiConfigPayload();
     payload.msg = WiFiConfigMsgType.TypeCmdSetConfig;
@@ -219,6 +198,10 @@ class Provisioning extends ProvisioningBase {
     return (respPayload.respSetConfig.status == Status.Success);
   }
 
+  /// Try to use credentials passed to [sendWifiConfig] to connect to an access
+  /// point
+  ///
+  /// Return true on success, false on failure
   Future<bool> applyWifiConfig() async {
     var payload = WiFiConfigPayload();
     payload.msg = WiFiConfigMsgType.TypeCmdApplyConfig;
@@ -229,6 +212,7 @@ class Provisioning extends ProvisioningBase {
     return (respPayload.respApplyConfig.status == Status.Success);
   }
 
+  /// Get the status of connection after testing configured credentials with [applyWifiConfig]
   Future<ConnectionStatus?> getStatus() async {
     var payload = WiFiConfigPayload();
     payload.msg = WiFiConfigMsgType.TypeCmdGetStatus;
@@ -267,6 +251,8 @@ class Provisioning extends ProvisioningBase {
     return null;
   }
 
+  /// Send data to the `custom-data` endpoint configured in the esp-idf WiFi
+  /// provisioning example
   Future<Uint8List> sendReceiveCustomData(Uint8List data, {int packageSize = 256}) async {
     var i = data.length;
     var offset = 0;
