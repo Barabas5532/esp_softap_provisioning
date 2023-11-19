@@ -1,9 +1,13 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: session.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
@@ -11,7 +15,6 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'sec0.pb.dart' as $1;
 import 'sec1.pb.dart' as $2;
-
 import 'session.pbenum.dart';
 
 export 'session.pbenum.dart';
@@ -22,40 +25,43 @@ enum SessionData_Proto {
   notSet
 }
 
+/// Data structure exchanged when establishing
+/// secure session between Host and Client
 class SessionData extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, SessionData_Proto> _SessionData_ProtoByTag = {
-    10 : SessionData_Proto.sec0,
-    11 : SessionData_Proto.sec1,
-    0 : SessionData_Proto.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SessionData', createEmptyInstance: create)
-    ..oo(0, [10, 11])
-    ..e<SecSchemeVersion>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'secVer', $pb.PbFieldType.OE, defaultOrMaker: SecSchemeVersion.SecScheme0, valueOf: SecSchemeVersion.valueOf, enumValues: SecSchemeVersion.values)
-    ..aOM<$1.Sec0Payload>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sec0', subBuilder: $1.Sec0Payload.create)
-    ..aOM<$2.Sec1Payload>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sec1', subBuilder: $2.Sec1Payload.create)
-    ..hasRequiredFields = false
-  ;
-
-  SessionData._() : super();
   factory SessionData({
     SecSchemeVersion? secVer,
     $1.Sec0Payload? sec0,
     $2.Sec1Payload? sec1,
   }) {
-    final _result = create();
+    final $result = create();
     if (secVer != null) {
-      _result.secVer = secVer;
+      $result.secVer = secVer;
     }
     if (sec0 != null) {
-      _result.sec0 = sec0;
+      $result.sec0 = sec0;
     }
     if (sec1 != null) {
-      _result.sec1 = sec1;
+      $result.sec1 = sec1;
     }
-    return _result;
+    return $result;
   }
+  SessionData._() : super();
   factory SessionData.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory SessionData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static const $core.Map<$core.int, SessionData_Proto> _SessionData_ProtoByTag = {
+    10 : SessionData_Proto.sec0,
+    11 : SessionData_Proto.sec1,
+    0 : SessionData_Proto.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SessionData', createEmptyInstance: create)
+    ..oo(0, [10, 11])
+    ..e<SecSchemeVersion>(2, _omitFieldNames ? '' : 'secVer', $pb.PbFieldType.OE, defaultOrMaker: SecSchemeVersion.SecScheme0, valueOf: SecSchemeVersion.valueOf, enumValues: SecSchemeVersion.values)
+    ..aOM<$1.Sec0Payload>(10, _omitFieldNames ? '' : 'sec0', subBuilder: $1.Sec0Payload.create)
+    ..aOM<$2.Sec1Payload>(11, _omitFieldNames ? '' : 'sec1', subBuilder: $2.Sec1Payload.create)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -65,8 +71,10 @@ class SessionData extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  SessionData copyWith(void Function(SessionData) updates) => super.copyWith((message) => updates(message as SessionData)) as SessionData; // ignore: deprecated_member_use
+  SessionData copyWith(void Function(SessionData) updates) => super.copyWith((message) => updates(message as SessionData)) as SessionData;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static SessionData create() => SessionData._();
   SessionData createEmptyInstance() => create();
@@ -110,3 +118,6 @@ class SessionData extends $pb.GeneratedMessage {
   $2.Sec1Payload ensureSec1() => $_ensure(2);
 }
 
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

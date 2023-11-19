@@ -1,19 +1,23 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: wifi_constants.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
 
-// ignore_for_file: UNDEFINED_SHOWN_NAME
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
+
 import 'dart:core' as $core;
+
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class WifiStationState extends $pb.ProtobufEnum {
-  static const WifiStationState Connected = WifiStationState._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'Connected');
-  static const WifiStationState Connecting = WifiStationState._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'Connecting');
-  static const WifiStationState Disconnected = WifiStationState._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'Disconnected');
-  static const WifiStationState ConnectionFailed = WifiStationState._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'ConnectionFailed');
+  static const WifiStationState Connected = WifiStationState._(0, _omitEnumNames ? '' : 'Connected');
+  static const WifiStationState Connecting = WifiStationState._(1, _omitEnumNames ? '' : 'Connecting');
+  static const WifiStationState Disconnected = WifiStationState._(2, _omitEnumNames ? '' : 'Disconnected');
+  static const WifiStationState ConnectionFailed = WifiStationState._(3, _omitEnumNames ? '' : 'ConnectionFailed');
 
   static const $core.List<WifiStationState> values = <WifiStationState> [
     Connected,
@@ -29,8 +33,8 @@ class WifiStationState extends $pb.ProtobufEnum {
 }
 
 class WifiConnectFailedReason extends $pb.ProtobufEnum {
-  static const WifiConnectFailedReason AuthError = WifiConnectFailedReason._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'AuthError');
-  static const WifiConnectFailedReason NetworkNotFound = WifiConnectFailedReason._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'NetworkNotFound');
+  static const WifiConnectFailedReason AuthError = WifiConnectFailedReason._(0, _omitEnumNames ? '' : 'AuthError');
+  static const WifiConnectFailedReason NetworkNotFound = WifiConnectFailedReason._(1, _omitEnumNames ? '' : 'NetworkNotFound');
 
   static const $core.List<WifiConnectFailedReason> values = <WifiConnectFailedReason> [
     AuthError,
@@ -44,12 +48,12 @@ class WifiConnectFailedReason extends $pb.ProtobufEnum {
 }
 
 class WifiAuthMode extends $pb.ProtobufEnum {
-  static const WifiAuthMode Open = WifiAuthMode._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'Open');
-  static const WifiAuthMode WEP = WifiAuthMode._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'WEP');
-  static const WifiAuthMode WPA_PSK = WifiAuthMode._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'WPA_PSK');
-  static const WifiAuthMode WPA2_PSK = WifiAuthMode._(3, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'WPA2_PSK');
-  static const WifiAuthMode WPA_WPA2_PSK = WifiAuthMode._(4, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'WPA_WPA2_PSK');
-  static const WifiAuthMode WPA2_ENTERPRISE = WifiAuthMode._(5, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'WPA2_ENTERPRISE');
+  static const WifiAuthMode Open = WifiAuthMode._(0, _omitEnumNames ? '' : 'Open');
+  static const WifiAuthMode WEP = WifiAuthMode._(1, _omitEnumNames ? '' : 'WEP');
+  static const WifiAuthMode WPA_PSK = WifiAuthMode._(2, _omitEnumNames ? '' : 'WPA_PSK');
+  static const WifiAuthMode WPA2_PSK = WifiAuthMode._(3, _omitEnumNames ? '' : 'WPA2_PSK');
+  static const WifiAuthMode WPA_WPA2_PSK = WifiAuthMode._(4, _omitEnumNames ? '' : 'WPA_WPA2_PSK');
+  static const WifiAuthMode WPA2_ENTERPRISE = WifiAuthMode._(5, _omitEnumNames ? '' : 'WPA2_ENTERPRISE');
 
   static const $core.List<WifiAuthMode> values = <WifiAuthMode> [
     Open,
@@ -66,3 +70,5 @@ class WifiAuthMode extends $pb.ProtobufEnum {
   const WifiAuthMode._($core.int v, $core.String n) : super(v, n);
 }
 
+
+const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

@@ -1,9 +1,13 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: sec1.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
@@ -14,24 +18,26 @@ import 'sec1.pbenum.dart';
 
 export 'sec1.pbenum.dart';
 
+/// Data structure of Session command1 packet
 class SessionCmd1 extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SessionCmd1', createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'clientVerifyData', $pb.PbFieldType.OY)
-    ..hasRequiredFields = false
-  ;
-
-  SessionCmd1._() : super();
   factory SessionCmd1({
     $core.List<$core.int>? clientVerifyData,
   }) {
-    final _result = create();
+    final $result = create();
     if (clientVerifyData != null) {
-      _result.clientVerifyData = clientVerifyData;
+      $result.clientVerifyData = clientVerifyData;
     }
-    return _result;
+    return $result;
   }
+  SessionCmd1._() : super();
   factory SessionCmd1.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory SessionCmd1.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SessionCmd1', createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'clientVerifyData', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -41,8 +47,10 @@ class SessionCmd1 extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  SessionCmd1 copyWith(void Function(SessionCmd1) updates) => super.copyWith((message) => updates(message as SessionCmd1)) as SessionCmd1; // ignore: deprecated_member_use
+  SessionCmd1 copyWith(void Function(SessionCmd1) updates) => super.copyWith((message) => updates(message as SessionCmd1)) as SessionCmd1;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static SessionCmd1 create() => SessionCmd1._();
   SessionCmd1 createEmptyInstance() => create();
@@ -61,29 +69,31 @@ class SessionCmd1 extends $pb.GeneratedMessage {
   void clearClientVerifyData() => clearField(2);
 }
 
+/// Data structure of Session response1 packet
 class SessionResp1 extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SessionResp1', createEmptyInstance: create)
-    ..e<$0.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $0.Status.Success, valueOf: $0.Status.valueOf, enumValues: $0.Status.values)
-    ..a<$core.List<$core.int>>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'deviceVerifyData', $pb.PbFieldType.OY)
-    ..hasRequiredFields = false
-  ;
-
-  SessionResp1._() : super();
   factory SessionResp1({
     $0.Status? status,
     $core.List<$core.int>? deviceVerifyData,
   }) {
-    final _result = create();
+    final $result = create();
     if (status != null) {
-      _result.status = status;
+      $result.status = status;
     }
     if (deviceVerifyData != null) {
-      _result.deviceVerifyData = deviceVerifyData;
+      $result.deviceVerifyData = deviceVerifyData;
     }
-    return _result;
+    return $result;
   }
+  SessionResp1._() : super();
   factory SessionResp1.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory SessionResp1.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SessionResp1', createEmptyInstance: create)
+    ..e<$0.Status>(1, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $0.Status.Success, valueOf: $0.Status.valueOf, enumValues: $0.Status.values)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'deviceVerifyData', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -93,8 +103,10 @@ class SessionResp1 extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  SessionResp1 copyWith(void Function(SessionResp1) updates) => super.copyWith((message) => updates(message as SessionResp1)) as SessionResp1; // ignore: deprecated_member_use
+  SessionResp1 copyWith(void Function(SessionResp1) updates) => super.copyWith((message) => updates(message as SessionResp1)) as SessionResp1;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static SessionResp1 create() => SessionResp1._();
   SessionResp1 createEmptyInstance() => create();
@@ -122,24 +134,26 @@ class SessionResp1 extends $pb.GeneratedMessage {
   void clearDeviceVerifyData() => clearField(3);
 }
 
+/// Data structure of Session command0 packet
 class SessionCmd0 extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SessionCmd0', createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'clientPubkey', $pb.PbFieldType.OY)
-    ..hasRequiredFields = false
-  ;
-
-  SessionCmd0._() : super();
   factory SessionCmd0({
     $core.List<$core.int>? clientPubkey,
   }) {
-    final _result = create();
+    final $result = create();
     if (clientPubkey != null) {
-      _result.clientPubkey = clientPubkey;
+      $result.clientPubkey = clientPubkey;
     }
-    return _result;
+    return $result;
   }
+  SessionCmd0._() : super();
   factory SessionCmd0.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory SessionCmd0.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SessionCmd0', createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'clientPubkey', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -149,8 +163,10 @@ class SessionCmd0 extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  SessionCmd0 copyWith(void Function(SessionCmd0) updates) => super.copyWith((message) => updates(message as SessionCmd0)) as SessionCmd0; // ignore: deprecated_member_use
+  SessionCmd0 copyWith(void Function(SessionCmd0) updates) => super.copyWith((message) => updates(message as SessionCmd0)) as SessionCmd0;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static SessionCmd0 create() => SessionCmd0._();
   SessionCmd0 createEmptyInstance() => create();
@@ -169,34 +185,36 @@ class SessionCmd0 extends $pb.GeneratedMessage {
   void clearClientPubkey() => clearField(1);
 }
 
+/// Data structure of Session response0 packet
 class SessionResp0 extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'SessionResp0', createEmptyInstance: create)
-    ..e<$0.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $0.Status.Success, valueOf: $0.Status.valueOf, enumValues: $0.Status.values)
-    ..a<$core.List<$core.int>>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'devicePubkey', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'deviceRandom', $pb.PbFieldType.OY)
-    ..hasRequiredFields = false
-  ;
-
-  SessionResp0._() : super();
   factory SessionResp0({
     $0.Status? status,
     $core.List<$core.int>? devicePubkey,
     $core.List<$core.int>? deviceRandom,
   }) {
-    final _result = create();
+    final $result = create();
     if (status != null) {
-      _result.status = status;
+      $result.status = status;
     }
     if (devicePubkey != null) {
-      _result.devicePubkey = devicePubkey;
+      $result.devicePubkey = devicePubkey;
     }
     if (deviceRandom != null) {
-      _result.deviceRandom = deviceRandom;
+      $result.deviceRandom = deviceRandom;
     }
-    return _result;
+    return $result;
   }
+  SessionResp0._() : super();
   factory SessionResp0.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory SessionResp0.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SessionResp0', createEmptyInstance: create)
+    ..e<$0.Status>(1, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $0.Status.Success, valueOf: $0.Status.valueOf, enumValues: $0.Status.values)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'devicePubkey', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'deviceRandom', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -206,8 +224,10 @@ class SessionResp0 extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  SessionResp0 copyWith(void Function(SessionResp0) updates) => super.copyWith((message) => updates(message as SessionResp0)) as SessionResp0; // ignore: deprecated_member_use
+  SessionResp0 copyWith(void Function(SessionResp0) updates) => super.copyWith((message) => updates(message as SessionResp0)) as SessionResp0;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static SessionResp0 create() => SessionResp0._();
   SessionResp0 createEmptyInstance() => create();
@@ -252,25 +272,8 @@ enum Sec1Payload_Payload {
   notSet
 }
 
+/// Payload structure of session data
 class Sec1Payload extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, Sec1Payload_Payload> _Sec1Payload_PayloadByTag = {
-    20 : Sec1Payload_Payload.sc0,
-    21 : Sec1Payload_Payload.sr0,
-    22 : Sec1Payload_Payload.sc1,
-    23 : Sec1Payload_Payload.sr1,
-    0 : Sec1Payload_Payload.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'Sec1Payload', createEmptyInstance: create)
-    ..oo(0, [20, 21, 22, 23])
-    ..e<Sec1MsgType>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'msg', $pb.PbFieldType.OE, defaultOrMaker: Sec1MsgType.Session_Command0, valueOf: Sec1MsgType.valueOf, enumValues: Sec1MsgType.values)
-    ..aOM<SessionCmd0>(20, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sc0', subBuilder: SessionCmd0.create)
-    ..aOM<SessionResp0>(21, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sr0', subBuilder: SessionResp0.create)
-    ..aOM<SessionCmd1>(22, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sc1', subBuilder: SessionCmd1.create)
-    ..aOM<SessionResp1>(23, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'sr1', subBuilder: SessionResp1.create)
-    ..hasRequiredFields = false
-  ;
-
-  Sec1Payload._() : super();
   factory Sec1Payload({
     Sec1MsgType? msg,
     SessionCmd0? sc0,
@@ -278,26 +281,45 @@ class Sec1Payload extends $pb.GeneratedMessage {
     SessionCmd1? sc1,
     SessionResp1? sr1,
   }) {
-    final _result = create();
+    final $result = create();
     if (msg != null) {
-      _result.msg = msg;
+      $result.msg = msg;
     }
     if (sc0 != null) {
-      _result.sc0 = sc0;
+      $result.sc0 = sc0;
     }
     if (sr0 != null) {
-      _result.sr0 = sr0;
+      $result.sr0 = sr0;
     }
     if (sc1 != null) {
-      _result.sc1 = sc1;
+      $result.sc1 = sc1;
     }
     if (sr1 != null) {
-      _result.sr1 = sr1;
+      $result.sr1 = sr1;
     }
-    return _result;
+    return $result;
   }
+  Sec1Payload._() : super();
   factory Sec1Payload.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory Sec1Payload.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static const $core.Map<$core.int, Sec1Payload_Payload> _Sec1Payload_PayloadByTag = {
+    20 : Sec1Payload_Payload.sc0,
+    21 : Sec1Payload_Payload.sr0,
+    22 : Sec1Payload_Payload.sc1,
+    23 : Sec1Payload_Payload.sr1,
+    0 : Sec1Payload_Payload.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Sec1Payload', createEmptyInstance: create)
+    ..oo(0, [20, 21, 22, 23])
+    ..e<Sec1MsgType>(1, _omitFieldNames ? '' : 'msg', $pb.PbFieldType.OE, defaultOrMaker: Sec1MsgType.Session_Command0, valueOf: Sec1MsgType.valueOf, enumValues: Sec1MsgType.values)
+    ..aOM<SessionCmd0>(20, _omitFieldNames ? '' : 'sc0', subBuilder: SessionCmd0.create)
+    ..aOM<SessionResp0>(21, _omitFieldNames ? '' : 'sr0', subBuilder: SessionResp0.create)
+    ..aOM<SessionCmd1>(22, _omitFieldNames ? '' : 'sc1', subBuilder: SessionCmd1.create)
+    ..aOM<SessionResp1>(23, _omitFieldNames ? '' : 'sr1', subBuilder: SessionResp1.create)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -307,8 +329,10 @@ class Sec1Payload extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  Sec1Payload copyWith(void Function(Sec1Payload) updates) => super.copyWith((message) => updates(message as Sec1Payload)) as Sec1Payload; // ignore: deprecated_member_use
+  Sec1Payload copyWith(void Function(Sec1Payload) updates) => super.copyWith((message) => updates(message as Sec1Payload)) as Sec1Payload;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Sec1Payload create() => Sec1Payload._();
   Sec1Payload createEmptyInstance() => create();
@@ -374,3 +398,6 @@ class Sec1Payload extends $pb.GeneratedMessage {
   SessionResp1 ensureSr1() => $_ensure(4);
 }
 
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

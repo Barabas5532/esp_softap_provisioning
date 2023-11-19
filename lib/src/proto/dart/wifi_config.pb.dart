@@ -1,31 +1,35 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: wifi_config.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'wifi_constants.pb.dart' as $3;
-
 import 'constants.pbenum.dart' as $0;
-import 'wifi_constants.pbenum.dart' as $3;
 import 'wifi_config.pbenum.dart';
+import 'wifi_constants.pb.dart' as $3;
+import 'wifi_constants.pbenum.dart' as $3;
 
 export 'wifi_config.pbenum.dart';
 
 class CmdGetStatus extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CmdGetStatus', createEmptyInstance: create)
+  factory CmdGetStatus() => create();
+  CmdGetStatus._() : super();
+  factory CmdGetStatus.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CmdGetStatus.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CmdGetStatus', createEmptyInstance: create)
     ..hasRequiredFields = false
   ;
 
-  CmdGetStatus._() : super();
-  factory CmdGetStatus() => create();
-  factory CmdGetStatus.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory CmdGetStatus.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -35,8 +39,10 @@ class CmdGetStatus extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  CmdGetStatus copyWith(void Function(CmdGetStatus) updates) => super.copyWith((message) => updates(message as CmdGetStatus)) as CmdGetStatus; // ignore: deprecated_member_use
+  CmdGetStatus copyWith(void Function(CmdGetStatus) updates) => super.copyWith((message) => updates(message as CmdGetStatus)) as CmdGetStatus;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static CmdGetStatus create() => CmdGetStatus._();
   CmdGetStatus createEmptyInstance() => create();
@@ -53,44 +59,45 @@ enum RespGetStatus_State {
 }
 
 class RespGetStatus extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, RespGetStatus_State> _RespGetStatus_StateByTag = {
-    10 : RespGetStatus_State.failReason,
-    11 : RespGetStatus_State.connected,
-    0 : RespGetStatus_State.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RespGetStatus', createEmptyInstance: create)
-    ..oo(0, [10, 11])
-    ..e<$0.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $0.Status.Success, valueOf: $0.Status.valueOf, enumValues: $0.Status.values)
-    ..e<$3.WifiStationState>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'staState', $pb.PbFieldType.OE, defaultOrMaker: $3.WifiStationState.Connected, valueOf: $3.WifiStationState.valueOf, enumValues: $3.WifiStationState.values)
-    ..e<$3.WifiConnectFailedReason>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'failReason', $pb.PbFieldType.OE, defaultOrMaker: $3.WifiConnectFailedReason.AuthError, valueOf: $3.WifiConnectFailedReason.valueOf, enumValues: $3.WifiConnectFailedReason.values)
-    ..aOM<$3.WifiConnectedState>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'connected', subBuilder: $3.WifiConnectedState.create)
-    ..hasRequiredFields = false
-  ;
-
-  RespGetStatus._() : super();
   factory RespGetStatus({
     $0.Status? status,
     $3.WifiStationState? staState,
     $3.WifiConnectFailedReason? failReason,
     $3.WifiConnectedState? connected,
   }) {
-    final _result = create();
+    final $result = create();
     if (status != null) {
-      _result.status = status;
+      $result.status = status;
     }
     if (staState != null) {
-      _result.staState = staState;
+      $result.staState = staState;
     }
     if (failReason != null) {
-      _result.failReason = failReason;
+      $result.failReason = failReason;
     }
     if (connected != null) {
-      _result.connected = connected;
+      $result.connected = connected;
     }
-    return _result;
+    return $result;
   }
+  RespGetStatus._() : super();
   factory RespGetStatus.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory RespGetStatus.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static const $core.Map<$core.int, RespGetStatus_State> _RespGetStatus_StateByTag = {
+    10 : RespGetStatus_State.failReason,
+    11 : RespGetStatus_State.connected,
+    0 : RespGetStatus_State.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RespGetStatus', createEmptyInstance: create)
+    ..oo(0, [10, 11])
+    ..e<$0.Status>(1, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $0.Status.Success, valueOf: $0.Status.valueOf, enumValues: $0.Status.values)
+    ..e<$3.WifiStationState>(2, _omitFieldNames ? '' : 'staState', $pb.PbFieldType.OE, defaultOrMaker: $3.WifiStationState.Connected, valueOf: $3.WifiStationState.valueOf, enumValues: $3.WifiStationState.values)
+    ..e<$3.WifiConnectFailedReason>(10, _omitFieldNames ? '' : 'failReason', $pb.PbFieldType.OE, defaultOrMaker: $3.WifiConnectFailedReason.AuthError, valueOf: $3.WifiConnectFailedReason.valueOf, enumValues: $3.WifiConnectFailedReason.values)
+    ..aOM<$3.WifiConnectedState>(11, _omitFieldNames ? '' : 'connected', subBuilder: $3.WifiConnectedState.create)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -100,8 +107,10 @@ class RespGetStatus extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  RespGetStatus copyWith(void Function(RespGetStatus) updates) => super.copyWith((message) => updates(message as RespGetStatus)) as RespGetStatus; // ignore: deprecated_member_use
+  RespGetStatus copyWith(void Function(RespGetStatus) updates) => super.copyWith((message) => updates(message as RespGetStatus)) as RespGetStatus;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static RespGetStatus create() => RespGetStatus._();
   RespGetStatus createEmptyInstance() => create();
@@ -153,38 +162,39 @@ class RespGetStatus extends $pb.GeneratedMessage {
 }
 
 class CmdSetConfig extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CmdSetConfig', createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'ssid', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'passphrase', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'bssid', $pb.PbFieldType.OY)
-    ..a<$core.int>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'channel', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
-
-  CmdSetConfig._() : super();
   factory CmdSetConfig({
     $core.List<$core.int>? ssid,
     $core.List<$core.int>? passphrase,
     $core.List<$core.int>? bssid,
     $core.int? channel,
   }) {
-    final _result = create();
+    final $result = create();
     if (ssid != null) {
-      _result.ssid = ssid;
+      $result.ssid = ssid;
     }
     if (passphrase != null) {
-      _result.passphrase = passphrase;
+      $result.passphrase = passphrase;
     }
     if (bssid != null) {
-      _result.bssid = bssid;
+      $result.bssid = bssid;
     }
     if (channel != null) {
-      _result.channel = channel;
+      $result.channel = channel;
     }
-    return _result;
+    return $result;
   }
+  CmdSetConfig._() : super();
   factory CmdSetConfig.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory CmdSetConfig.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CmdSetConfig', createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, _omitFieldNames ? '' : 'ssid', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'passphrase', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'bssid', $pb.PbFieldType.OY)
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'channel', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -194,8 +204,10 @@ class CmdSetConfig extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  CmdSetConfig copyWith(void Function(CmdSetConfig) updates) => super.copyWith((message) => updates(message as CmdSetConfig)) as CmdSetConfig; // ignore: deprecated_member_use
+  CmdSetConfig copyWith(void Function(CmdSetConfig) updates) => super.copyWith((message) => updates(message as CmdSetConfig)) as CmdSetConfig;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static CmdSetConfig create() => CmdSetConfig._();
   CmdSetConfig createEmptyInstance() => create();
@@ -242,23 +254,24 @@ class CmdSetConfig extends $pb.GeneratedMessage {
 }
 
 class RespSetConfig extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RespSetConfig', createEmptyInstance: create)
-    ..e<$0.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $0.Status.Success, valueOf: $0.Status.valueOf, enumValues: $0.Status.values)
-    ..hasRequiredFields = false
-  ;
-
-  RespSetConfig._() : super();
   factory RespSetConfig({
     $0.Status? status,
   }) {
-    final _result = create();
+    final $result = create();
     if (status != null) {
-      _result.status = status;
+      $result.status = status;
     }
-    return _result;
+    return $result;
   }
+  RespSetConfig._() : super();
   factory RespSetConfig.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory RespSetConfig.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RespSetConfig', createEmptyInstance: create)
+    ..e<$0.Status>(1, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $0.Status.Success, valueOf: $0.Status.valueOf, enumValues: $0.Status.values)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -268,8 +281,10 @@ class RespSetConfig extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  RespSetConfig copyWith(void Function(RespSetConfig) updates) => super.copyWith((message) => updates(message as RespSetConfig)) as RespSetConfig; // ignore: deprecated_member_use
+  RespSetConfig copyWith(void Function(RespSetConfig) updates) => super.copyWith((message) => updates(message as RespSetConfig)) as RespSetConfig;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static RespSetConfig create() => RespSetConfig._();
   RespSetConfig createEmptyInstance() => create();
@@ -289,14 +304,15 @@ class RespSetConfig extends $pb.GeneratedMessage {
 }
 
 class CmdApplyConfig extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'CmdApplyConfig', createEmptyInstance: create)
+  factory CmdApplyConfig() => create();
+  CmdApplyConfig._() : super();
+  factory CmdApplyConfig.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CmdApplyConfig.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CmdApplyConfig', createEmptyInstance: create)
     ..hasRequiredFields = false
   ;
 
-  CmdApplyConfig._() : super();
-  factory CmdApplyConfig() => create();
-  factory CmdApplyConfig.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory CmdApplyConfig.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -306,8 +322,10 @@ class CmdApplyConfig extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  CmdApplyConfig copyWith(void Function(CmdApplyConfig) updates) => super.copyWith((message) => updates(message as CmdApplyConfig)) as CmdApplyConfig; // ignore: deprecated_member_use
+  CmdApplyConfig copyWith(void Function(CmdApplyConfig) updates) => super.copyWith((message) => updates(message as CmdApplyConfig)) as CmdApplyConfig;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static CmdApplyConfig create() => CmdApplyConfig._();
   CmdApplyConfig createEmptyInstance() => create();
@@ -318,23 +336,24 @@ class CmdApplyConfig extends $pb.GeneratedMessage {
 }
 
 class RespApplyConfig extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'RespApplyConfig', createEmptyInstance: create)
-    ..e<$0.Status>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $0.Status.Success, valueOf: $0.Status.valueOf, enumValues: $0.Status.values)
-    ..hasRequiredFields = false
-  ;
-
-  RespApplyConfig._() : super();
   factory RespApplyConfig({
     $0.Status? status,
   }) {
-    final _result = create();
+    final $result = create();
     if (status != null) {
-      _result.status = status;
+      $result.status = status;
     }
-    return _result;
+    return $result;
   }
+  RespApplyConfig._() : super();
   factory RespApplyConfig.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory RespApplyConfig.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RespApplyConfig', createEmptyInstance: create)
+    ..e<$0.Status>(1, _omitFieldNames ? '' : 'status', $pb.PbFieldType.OE, defaultOrMaker: $0.Status.Success, valueOf: $0.Status.valueOf, enumValues: $0.Status.values)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -344,8 +363,10 @@ class RespApplyConfig extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  RespApplyConfig copyWith(void Function(RespApplyConfig) updates) => super.copyWith((message) => updates(message as RespApplyConfig)) as RespApplyConfig; // ignore: deprecated_member_use
+  RespApplyConfig copyWith(void Function(RespApplyConfig) updates) => super.copyWith((message) => updates(message as RespApplyConfig)) as RespApplyConfig;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static RespApplyConfig create() => RespApplyConfig._();
   RespApplyConfig createEmptyInstance() => create();
@@ -375,28 +396,6 @@ enum WiFiConfigPayload_Payload {
 }
 
 class WiFiConfigPayload extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, WiFiConfigPayload_Payload> _WiFiConfigPayload_PayloadByTag = {
-    10 : WiFiConfigPayload_Payload.cmdGetStatus,
-    11 : WiFiConfigPayload_Payload.respGetStatus,
-    12 : WiFiConfigPayload_Payload.cmdSetConfig,
-    13 : WiFiConfigPayload_Payload.respSetConfig,
-    14 : WiFiConfigPayload_Payload.cmdApplyConfig,
-    15 : WiFiConfigPayload_Payload.respApplyConfig,
-    0 : WiFiConfigPayload_Payload.notSet
-  };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'WiFiConfigPayload', createEmptyInstance: create)
-    ..oo(0, [10, 11, 12, 13, 14, 15])
-    ..e<WiFiConfigMsgType>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'msg', $pb.PbFieldType.OE, defaultOrMaker: WiFiConfigMsgType.TypeCmdGetStatus, valueOf: WiFiConfigMsgType.valueOf, enumValues: WiFiConfigMsgType.values)
-    ..aOM<CmdGetStatus>(10, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cmdGetStatus', subBuilder: CmdGetStatus.create)
-    ..aOM<RespGetStatus>(11, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'respGetStatus', subBuilder: RespGetStatus.create)
-    ..aOM<CmdSetConfig>(12, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cmdSetConfig', subBuilder: CmdSetConfig.create)
-    ..aOM<RespSetConfig>(13, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'respSetConfig', subBuilder: RespSetConfig.create)
-    ..aOM<CmdApplyConfig>(14, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'cmdApplyConfig', subBuilder: CmdApplyConfig.create)
-    ..aOM<RespApplyConfig>(15, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'respApplyConfig', subBuilder: RespApplyConfig.create)
-    ..hasRequiredFields = false
-  ;
-
-  WiFiConfigPayload._() : super();
   factory WiFiConfigPayload({
     WiFiConfigMsgType? msg,
     CmdGetStatus? cmdGetStatus,
@@ -406,32 +405,55 @@ class WiFiConfigPayload extends $pb.GeneratedMessage {
     CmdApplyConfig? cmdApplyConfig,
     RespApplyConfig? respApplyConfig,
   }) {
-    final _result = create();
+    final $result = create();
     if (msg != null) {
-      _result.msg = msg;
+      $result.msg = msg;
     }
     if (cmdGetStatus != null) {
-      _result.cmdGetStatus = cmdGetStatus;
+      $result.cmdGetStatus = cmdGetStatus;
     }
     if (respGetStatus != null) {
-      _result.respGetStatus = respGetStatus;
+      $result.respGetStatus = respGetStatus;
     }
     if (cmdSetConfig != null) {
-      _result.cmdSetConfig = cmdSetConfig;
+      $result.cmdSetConfig = cmdSetConfig;
     }
     if (respSetConfig != null) {
-      _result.respSetConfig = respSetConfig;
+      $result.respSetConfig = respSetConfig;
     }
     if (cmdApplyConfig != null) {
-      _result.cmdApplyConfig = cmdApplyConfig;
+      $result.cmdApplyConfig = cmdApplyConfig;
     }
     if (respApplyConfig != null) {
-      _result.respApplyConfig = respApplyConfig;
+      $result.respApplyConfig = respApplyConfig;
     }
-    return _result;
+    return $result;
   }
+  WiFiConfigPayload._() : super();
   factory WiFiConfigPayload.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory WiFiConfigPayload.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static const $core.Map<$core.int, WiFiConfigPayload_Payload> _WiFiConfigPayload_PayloadByTag = {
+    10 : WiFiConfigPayload_Payload.cmdGetStatus,
+    11 : WiFiConfigPayload_Payload.respGetStatus,
+    12 : WiFiConfigPayload_Payload.cmdSetConfig,
+    13 : WiFiConfigPayload_Payload.respSetConfig,
+    14 : WiFiConfigPayload_Payload.cmdApplyConfig,
+    15 : WiFiConfigPayload_Payload.respApplyConfig,
+    0 : WiFiConfigPayload_Payload.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'WiFiConfigPayload', createEmptyInstance: create)
+    ..oo(0, [10, 11, 12, 13, 14, 15])
+    ..e<WiFiConfigMsgType>(1, _omitFieldNames ? '' : 'msg', $pb.PbFieldType.OE, defaultOrMaker: WiFiConfigMsgType.TypeCmdGetStatus, valueOf: WiFiConfigMsgType.valueOf, enumValues: WiFiConfigMsgType.values)
+    ..aOM<CmdGetStatus>(10, _omitFieldNames ? '' : 'cmdGetStatus', subBuilder: CmdGetStatus.create)
+    ..aOM<RespGetStatus>(11, _omitFieldNames ? '' : 'respGetStatus', subBuilder: RespGetStatus.create)
+    ..aOM<CmdSetConfig>(12, _omitFieldNames ? '' : 'cmdSetConfig', subBuilder: CmdSetConfig.create)
+    ..aOM<RespSetConfig>(13, _omitFieldNames ? '' : 'respSetConfig', subBuilder: RespSetConfig.create)
+    ..aOM<CmdApplyConfig>(14, _omitFieldNames ? '' : 'cmdApplyConfig', subBuilder: CmdApplyConfig.create)
+    ..aOM<RespApplyConfig>(15, _omitFieldNames ? '' : 'respApplyConfig', subBuilder: RespApplyConfig.create)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -441,8 +463,10 @@ class WiFiConfigPayload extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  WiFiConfigPayload copyWith(void Function(WiFiConfigPayload) updates) => super.copyWith((message) => updates(message as WiFiConfigPayload)) as WiFiConfigPayload; // ignore: deprecated_member_use
+  WiFiConfigPayload copyWith(void Function(WiFiConfigPayload) updates) => super.copyWith((message) => updates(message as WiFiConfigPayload)) as WiFiConfigPayload;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static WiFiConfigPayload create() => WiFiConfigPayload._();
   WiFiConfigPayload createEmptyInstance() => create();
@@ -530,3 +554,6 @@ class WiFiConfigPayload extends $pb.GeneratedMessage {
   RespApplyConfig ensureRespApplyConfig() => $_ensure(6);
 }
 
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');
