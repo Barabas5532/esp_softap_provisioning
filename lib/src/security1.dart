@@ -18,7 +18,7 @@ class Security1 implements Security {
   final String? pop;
   final bool verbose;
   SecurityState sessionState;
-  late SimpleKeyPairData clientKey;
+  late SimpleKeyPair clientKey;
   List<int>? clientPubKey;
   late SimplePublicKey devicePublicKey;
   late Uint8List deviceRandom;
@@ -43,7 +43,7 @@ class Security1 implements Security {
 
   Future<void> _generateKey() async {
     // creates client key with X25519 algo
-    this.clientKey = await (algorithm.newKeyPair() as FutureOr<SimpleKeyPairData>);
+    this.clientKey = await algorithm.newKeyPair();
   }
 
 
@@ -133,7 +133,7 @@ class Security1 implements Security {
 
   Future<SessionData> setup1Request() async {
     logger.i('setup1Request ${devicePublicKey.toString()}');
-    var clientVerify = await encrypt(devicePublicKey.bytes as Uint8List);
+    var clientVerify = await encrypt(Uint8List.fromList(devicePublicKey.bytes));
 
     logger.i('client verify ${clientVerify.toString()}');
     var setupRequest = SessionData();
