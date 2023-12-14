@@ -54,7 +54,7 @@ class TransportHTTP implements Transport{
     try {
       print("Connecting to " + this.hostname + "/" + epName);
       final response = await client.post(Uri.http(this.hostname, "/" + epName,),headers: this.headers,
-      body: data).timeout(this.timeout).catchError((error){print(error);});
+      body: data).timeout(this.timeout);
 
       _updateCookie(response);
       if (response.statusCode == 200) {
