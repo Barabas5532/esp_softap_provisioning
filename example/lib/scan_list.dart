@@ -10,11 +10,11 @@ class ScanList extends StatelessWidget {
   final ItemTapCallback onTap;
   final bool disableLoading;
 
-  ScanList(this.items, this.icon, {this.onTap, this.disableLoading});
+  ScanList(this.items, this.icon, {required this.onTap, required this.disableLoading});
 
   Widget _buildItem(
       BuildContext _context, Map<String, dynamic> item, IconData icon,
-      {ItemTapCallback onTap}) {
+      {required ItemTapCallback onTap}) {
     return ListTile(
         leading: Container(
           padding: EdgeInsets.all(4.0),
@@ -25,14 +25,12 @@ class ScanList extends StatelessWidget {
         ),
         title: Text(
           item['name'] ?? item['ssid'],
-          style: TextStyle(color: Theme.of(_context).accentColor),
+          style: TextStyle(color: Theme.of(_context).colorScheme.secondary),
         ),
         trailing: Text(item['rssi'].toString()),
         onTap: () {
           print('tap');
-          if (onTap != null) {
-            onTap(item, _context);
-          }
+          onTap(item, _context);
         } //showModel(_context, bleDevice),
         );
   }
@@ -40,7 +38,7 @@ class ScanList extends StatelessWidget {
   Widget _buildList(BuildContext _context) {
     return Column(
       children: <Widget>[
-        this.disableLoading != null && this.disableLoading
+        this.disableLoading
             ? Container()
             : SizedBox(
                 child: Container(
@@ -49,7 +47,7 @@ class ScanList extends StatelessWidget {
                     child: Align(
                         alignment: Alignment.center,
                         child: SpinKitRipple(
-                            color: Theme.of(_context).textSelectionColor)))),
+                            color: Theme.of(_context).textSelectionTheme.selectionHandleColor)))),
         Expanded(
             child: ListView.separated(
                 shrinkWrap: true,

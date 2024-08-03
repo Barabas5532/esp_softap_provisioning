@@ -1,11 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:typed_data';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'transport.dart';
-import 'package:universal_io/io.dart';
-import 'dart:convert' as convert;
 import 'package:string_validator/string_validator.dart';
 
 class TransportHTTP implements Transport{

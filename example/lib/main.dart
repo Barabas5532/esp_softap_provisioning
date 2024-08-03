@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
               'Start Provisioning',
               style: Theme.of(context)
                   .textTheme
-                  .headline6
+                  .titleLarge!
                   .copyWith(color: Colors.white),
             ),
           ),

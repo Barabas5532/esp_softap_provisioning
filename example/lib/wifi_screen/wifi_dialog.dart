@@ -5,7 +5,7 @@ class WifiDialog extends StatefulWidget {
   final String wifiName;
   final Function(String ssid, String password) onSubmit;
 
-  WifiDialog({Key key, this.wifiName, this.onSubmit}) : super(key: key);
+  WifiDialog({Key? key, required this.wifiName, required this.onSubmit}) : super(key: key);
 
   @override
   _WifiDialogState createState() => _WifiDialogState();
@@ -41,12 +41,15 @@ class _WifiDialogState extends State<WifiDialog> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text('Password for WiFi',
-                    style: Theme.of(context).textTheme.bodyText2),
+                    style: Theme.of(context).textTheme.bodyMedium),
                 SizedBox(
                   height: 10.0,
                 ),
                 TextFormField(
                     onSaved: (text) {
+                      if (text == null) {
+                        return;
+                      }
                       ssid = text;
                     },
                     initialValue: widget.wifiName,
@@ -54,7 +57,7 @@ class _WifiDialogState extends State<WifiDialog> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5),
                             borderSide: BorderSide(
-                              color: Theme.of(context).accentColor,
+                              color: Theme.of(context).colorScheme.secondary,
                               width: 1,
                             )))),
                 SizedBox(
@@ -63,6 +66,9 @@ class _WifiDialogState extends State<WifiDialog> {
                 PasswordFormField(
                   initialValue: password,
                   onSaved: (text) {
+                    if (text == null) {
+                      return;
+                    }
                     password = text;
                   },
                 ),
@@ -76,11 +82,9 @@ class _WifiDialogState extends State<WifiDialog> {
                       child: Text('Provision'),
                       color: Colors.lightBlueAccent,
                       onPressed: () {
-                        if (_formKey.currentState.validate()) {
-                          _formKey.currentState.save();
-                          if (widget.onSubmit != null) {
-                            widget.onSubmit(ssid, password);
-                          }
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          widget.onSubmit(ssid, password);
                           Navigator.of(context).pop();
                         }
                       }),

@@ -73,7 +73,7 @@ class _SoftApScreenState extends State<SoftApScreen> {
                         'Ready',
                         style: Theme.of(context)
                             .textTheme
-                            .headline6
+                            .titleLarge!
                             .copyWith(color: Colors.white),
                       ),
 
@@ -88,7 +88,7 @@ class _SoftApScreenState extends State<SoftApScreen> {
             }
 
             return Center(
-              child: SpinKitFoldingCube(color: Theme.of(context).textSelectionColor),
+              child: SpinKitFoldingCube(color: Theme.of(context).textSelectionTheme.selectionHandleColor),
             );
           },
         ),

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class PasswordFormField extends StatefulWidget {
   final String initialValue;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
   final FormFieldSetter<String> onSaved;
 
-  PasswordFormField({Key key, this.initialValue, this.onChanged, this.onSaved})
+  PasswordFormField({Key? key, required this.initialValue, this.onChanged, required this.onSaved})
       : super(key: key);
 
   @override
@@ -28,20 +28,20 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
         onChanged: widget.onChanged,
         onSaved: widget.onSaved,
         validator: (value) {
-          if (value.isNotEmpty && value.length < 8) {
+          if (value != null && value.isNotEmpty && value.length < 8) {
             return 'The minimum password length is 8';
           }
           return null;
         },
         decoration: InputDecoration(
-            suffixIcon: FlatButton(
+            suffixIcon: TextButton(
                 onPressed: () {
                   setState(() {
                     isObscureText = !isObscureText;
                   });
                 },
                 child: Icon(isObscureText ? Icons.remove_red_eye : Icons.lock_outline,
-                    color: Theme.of(context).accentColor)),
+                    color: Theme.of(context).colorScheme.secondary)),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
                 borderSide: BorderSide(

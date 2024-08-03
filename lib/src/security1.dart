@@ -9,10 +9,6 @@ import 'proto/dart/sec1.pb.dart';
 import 'proto/dart/session.pb.dart';
 import 'security.dart';
 import 'package:logger/logger.dart';
-import 'package:universal_io/io.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-
-bool _hasNativeCryptor() => (Platform.isAndroid || Platform.isIOS) && !kIsWeb;
 
 class Security1 implements Security {
   final String? pop;
@@ -22,7 +18,7 @@ class Security1 implements Security {
   List<int>? clientPubKey;
   late SimplePublicKey devicePublicKey;
   late Uint8List deviceRandom;
-  Cryptor crypt = _hasNativeCryptor() ? Cryptor() : UniversalCryptor();
+  Cryptor crypt = Cryptor();
   var logger = Logger();
   final algorithm = X25519();
 

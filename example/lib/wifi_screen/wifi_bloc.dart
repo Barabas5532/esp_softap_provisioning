@@ -11,7 +11,7 @@ import 'dart:convert';
 
 class WiFiBlocSoftAP extends Bloc<WifiEvent, WifiState> {
 
-  Provisioning prov;
+  late final Provisioning prov;
   Logger log = Logger(printer: PrettyPrinter());
   var softApService = SoftAPService();
 
@@ -50,7 +50,7 @@ class WiFiBlocSoftAP extends Bloc<WifiEvent, WifiState> {
 
       var listWifi = await prov.startScanWiFi();
       yield WifiStateLoaded(wifiList: listWifi ?? []);
-      log.v('Wifi $listWifi');
+      log.t('Wifi $listWifi');
     } catch (e) {
       log.e('Error scan WiFi network $e');
       yield WifiStateError('Error scan WiFi network');
@@ -67,20 +67,20 @@ class WiFiBlocSoftAP extends Bloc<WifiEvent, WifiState> {
     await Future.delayed(Duration(seconds: 10));
     var connectionStatus = await prov.getStatus();
 
-    if (connectionStatus.state == WifiConnectionState.Connected) {
+    if (connectionStatus?.state == WifiConnectionState.Connected) {
       yield WifiStateProvisionedSuccessfully();
     }
     /*else if (connectionStatus.state == 1){
 
     }*/
-    else if (connectionStatus.state == WifiConnectionState.Disconnected){
+    else if (connectionStatus?.state == WifiConnectionState.Disconnected){
       yield WifiStateProvisioningDisconnected();
     }
-    else if (connectionStatus.state == WifiConnectionState.ConnectionFailed){
-      if (connectionStatus.failedReason == WifiConnectFailedReason.AuthError){
+    else if (connectionStatus?.state == WifiConnectionState.ConnectionFailed){
+      if (connectionStatus?.failedReason == WifiConnectFailedReason.AuthError){
         yield WifiStateProvisioningAuthError();
       }
-      else if (connectionStatus.failedReason == WifiConnectFailedReason.NetworkNotFound){
+      else if (connectionStatus?.failedReason == WifiConnectFailedReason.NetworkNotFound){
         yield WifiStateProvisioningNetworkNotFound();
       }
     }
@@ -88,7 +88,7 @@ class WiFiBlocSoftAP extends Bloc<WifiEvent, WifiState> {
 
   @override
   Future<void> close() {
-    prov?.dispose();
+    prov.dispose();
     return super.close();
   }
 }

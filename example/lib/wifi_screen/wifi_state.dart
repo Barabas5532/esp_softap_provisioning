@@ -23,7 +23,7 @@ class WifiStateScanning extends WifiState {}
 class WifiStateLoaded extends WifiState {
   final List<Map<String, dynamic>> wifiList;
 
-  WifiStateLoaded({this.wifiList});
+  WifiStateLoaded({required this.wifiList});
 }
 
 class WifiStateProvisioning extends WifiState {}
